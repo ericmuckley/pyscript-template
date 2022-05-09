@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>pyscript-template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/bootstrap-icons.css">
+  <link rel="stylesheet" href="static/css/styles.css">
+  <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css">-->
+</head>
+
+
+<py-env>
+  - numpy 
+  - pandas  
+  - matplotlib
+</py-env>
+
+<body>
+
+<main class="p-5">
+  <h1>pyscript template</h1>
+  <p>This is a template for using <a href="https://github.com/pyscript/pyscript" target="_blank">pyscript</a>.</p>
+
+
+  
+  <div id="plot-div"></div>
+  <div id="results-div"></div>
+  <div id="response-div"></div>
+
+
+
+
+</main>
+
+<script src="static/js/d3.min.js"></script>
+<script src="static/js/plotly-latest.min.js"></script>
+<script src="static/js/bootstrap.bundle.min.js"></script>
+
+<script src="static/js/utils.js"></script>
+<script src="static/js/init.js"></script>
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+
+<py-script>
+import time
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-2*np.pi, 2*np.pi, 100)
+y = np.cos(x) / np.abs(x)
+z = {"a": [1,2,3], "b": -2343.3453404, "c": "hello"}
+
+pyscript.write("results-div", (x, y, z))
+'''
+plt.plot(x,y)
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.title("My plot")
+'''
+
+def my_function(*args, **kwargs):
+    pyscript.write("resonse-div", f"the time is: {time.now()}")
+
+
+</py-script>
+
+</body>
+</html>
+
+
